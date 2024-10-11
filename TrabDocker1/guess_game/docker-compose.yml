@@ -20,7 +20,8 @@ services:
     restart: always
 
   db:
-    image: postgres:latest
+    build:
+      context: ./db  # Specify the path to the folder containing your custom Dockerfile
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "secretpass"
@@ -28,6 +29,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: always
+
 
   frontend:
     build:
